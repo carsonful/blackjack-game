@@ -18,7 +18,7 @@ END, END GOALS -
 
 - Sign in through website
 - Save Data using DB
-- Mobile friendly (possibly lol)
+- Mobile friendly 
 - Reward Users for coming back
 
 
@@ -36,13 +36,16 @@ card_count = r['remaining']
 
 for i in range(card_count):
     URL = f'http://deckofcardsapi.com/api/deck/{DECKID}/draw/?count=1'
-
     card = requests.get(URL).json()
     card = card['cards']
     for info in card:
         print(info['value'] + ' of ' + info['suit'])
 
 
+URL = f'http://deckofcardsapi.com/api/deck/{DECKID}/shuffle/'
 
+
+deck = requests.get(URL).json()
+print(deck['deck_id'], DECKID)
 
 
