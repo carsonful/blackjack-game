@@ -40,7 +40,7 @@ for i in range(card_count):
     card = requests.get(URL).json()
     card = card['cards']
     for info in card:
-        print(i['value'] + ' of ' + i['suit'])
+        print(info['value'] + ' of ' + info['suit'])
 
 
 
