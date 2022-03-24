@@ -1,5 +1,7 @@
 
-# USES http://deckofcardsapi.com/?ref=devresourc.es
+# USES http://deckofcardsapi.com/?ref=devresourc.es'
+
+# API FOUND ON https://www.devresourc.es/category/public-apis/games-and-comics
 """
 IMPORTANT INFO FOR GAME / RULES OF BLACKJACK
 
