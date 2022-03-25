@@ -1,6 +1,7 @@
+from unicodedata import digit
 import requests
 
-URL = 'http://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1'
+URL = 'http://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=3'
 
 r = requests.get(URL).json()
 
@@ -8,40 +9,54 @@ r = requests.get(URL).json()
 deckID = r['deck_id']
 
 
+def define_card():
 
-def draw_card():
-    nonnumbers = {'KING', 'QUEEN', 'ACE', 'JACK'}
-    URL =  f'http://deckofcardsapi.com/api/deck/{deckID}/draw/?count=1'
-    card = requests.get(URL).json()
-    card = card['cards']
-    for info in card:
-        suit = info['suit']
-        if info['value'] in nonnumbers:
-            value = 10
-            if info['value'] == 'ACE':
-                while True:
-                    value = int(input('Would you like your ace to be 1 or 11: '))
-                    if value == 11 or value == 1:
-                        value = value
-                        break
-    return value, suit
-
-
-
-
-def dealer():
     URL = f'http://deckofcardsapi.com/api/deck/{deckID}/draw/?count=1'
     card = requests.get(URL).json()
     card = card['cards']
-    for info in card:
-        secretcard = info['value'] + ' of ' + info['suit']
-    
-    card = requests.get(URL).json()
-    card = card['cards']
-    for info in card:
-        upcard = info['value'] + ' of ' + info['suit']
 
-    return upcard,secretcard
+    for info in card:
+        value = info['value']
+        suit = info['suit'] 
 
-for i in range(52):
-    print(draw_card())
+        if suit == 'SPADES':
+            suit = '♠'
+        elif suit == 'HEARTS':
+            suit = '♥'
+        elif suit == 'CLUBS':
+            suit = '♣'
+        elif suit == 'DIAMONDS':
+            suit = '♦'
+
+        if value is not digit:
+            value = value[0]
+            
+
+
+
+    return value, suit
+
+
+def show(value, suit):
+    print('┌───────┐')
+    print(f'| {value:<2}    |')
+    print('|       |')
+    print(f'|   {suit}   |')
+    print('|       |')
+    print(f'|    {value:>2} |')
+    print('└───────┘') 
+
+
+
+def hit():
+    define_card()
+
+
+
+
+
+def shuffle_deck():
+    URL = f'http://deckofcardsapi.com/api/deck/{deckID}/shuffle/'
+    print(URL)
+    shuffledeck = requests.get(URL).json()
+
