@@ -24,28 +24,34 @@ END, END GOALS -
 
 """
 import requests
-
-URL = 'http://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1'
-
-r = requests.get(URL).json()
+from extensions import cards
+from extensions import players
 
 
-DECKID = r['deck_id']
-
-card_count = r['remaining']
-
-for i in range(card_count):
-    URL = f'http://deckofcardsapi.com/api/deck/{DECKID}/draw/?count=1'
-    card = requests.get(URL).json()
-    card = card['cards']
-    for info in card:
-        print(info['value'] + ' of ' + info['suit'])
 
 
-URL = f'http://deckofcardsapi.com/api/deck/{DECKID}/shuffle/'
 
 
-deck = requests.get(URL).json()
-print(deck['deck_id'], DECKID)
+def play():
+
+    x = players.dealer()
+    bets = x[2]
+    if x[0] > x[3]:
+        status = 'LOSS'
+        msg = f'Dealer Wins -${bets}'
+    elif x[0] == x[3]:
+        status = 'PUSH'
+        msg = "It's a push keep your money!"
+    elif x[0] < x[3]:
+        status = 'WIN'
+        msg = f'You win +${bets}'
+    
+    return players.bet(status,bets)
 
 
+
+
+
+
+
+print(play())
