@@ -47,8 +47,4 @@ def play():
 
 
 
-<<<<<<< HEAD
 print(play())
-=======
-print(play())
->>>>>>> 346a3f356a4125cb5778b1b66dc2f68d4de20555

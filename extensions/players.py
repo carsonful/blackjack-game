@@ -139,8 +139,5 @@ def dealer():
 
 
     return total, hand, bets, compare
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 346a3f356a4125cb5778b1b66dc2f68d4de20555
