@@ -1,4 +1,3 @@
-from unicodedata import digit
 import requests
 
 URL = 'http://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=3'
@@ -59,4 +58,3 @@ def shuffle_deck():
     URL = f'http://deckofcardsapi.com/api/deck/{deckID}/shuffle/'
     print(URL)
     shuffledeck = requests.get(URL).json()
-
