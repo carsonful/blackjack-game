@@ -72,6 +72,7 @@ def bet(status, bet_amount):
         message =  f'Good try you now have ${bets}'
     elif status == 'PUSH':
         message =  f'Good Try you have ${bets}'
+        bets = money
         pass
     return bets, message
     

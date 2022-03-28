@@ -52,7 +52,7 @@ def play():
 
     playersbet = players.bet(status, bets)
     money = playersbet[0]
-    return  msg + f', You now have ${money}.'
+    return  msg + f', You now have ${money}.', money
 
 
 
@@ -65,9 +65,18 @@ def play():
 
 
 
-print(play())
+x = play()
+
+money = x[1]
+
+print(x[0])
+
+
 
 again = input('Would you like to play again? "Y" or "N": ')
 
 while again != 'N':
-    print(play())
+    x = play()
+    money = x[1]
+
+    print(x[0])
