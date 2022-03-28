@@ -1,13 +1,10 @@
-import cards
+from extensions import cards
 import time
 
 
 def user():
     
-    money = 500
     
-    bets = int(input(f'How much would you like to bet? (Money: ${money}):'))
-
     named_cards = {'K', 'Q', 'J'}
 
 
@@ -40,10 +37,7 @@ def user():
 
 
         if total > 21:
-
-            print(f'{total}, You Busted! -{bets}')
-            money = money - bets
-            print(f'You now have ${money} remaining!')
+            print(f'{total}, You Busted!')
             break
         print(total)
 
@@ -66,19 +60,28 @@ def user():
 
 
 
-def bet(status, bet_amount):
+def bet(status, message):
     bet_amount = bets
 
     if status == 'WIN':
         bets = bets * 2
+        message =  f'Congrats you now have ${bets}'
     elif status == 'LOSS':
         bets = bets * -1
+        message =  f'Good try you now have ${bets}'
     elif status == 'PUSH':
+        message =  f'Good Try you have ${bets}'
         pass
-    return bets
+    return bets, message
     
 
 def dealer():
+
+    money = 500
+    
+    bets = int(input(f'How much would you like to bet? (Money: ${money}):'))
+
+
     card1 = cards.define_card()
     card2 = cards.define_card()
 
@@ -97,6 +100,7 @@ def dealer():
             if count == 1:
                 if i == 1:
                     cards.show('X','X')
+                    print('^^^^^^DEALERS HAND^^^^^^')
 
             elif value in named_cards:
                 total += 10
@@ -112,10 +116,15 @@ def dealer():
                 total += int(value)
                 cards.show(value, suit)
         
+            
+            if count == 1:
+                compare = user()
+                print('^^^^^YOUR HAND^^^^^')
+                count = count + 1
+                pass
             count = count + 1
-        print(total)
 
-        time.sleep(3)
+        print(total)    
 
         if total < 16:
             print('The Dealer Hits!')
@@ -126,13 +135,7 @@ def dealer():
         else:
             print('The dealer stands!')
             break
-
-        print(total)
-    print(total)
+        
 
 
-
-    return total, hand
-
-
-dealer()
+    return total, hand, bets, compare
