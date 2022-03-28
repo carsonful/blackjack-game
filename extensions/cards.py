@@ -1,3 +1,4 @@
+from unicodedata import digit
 import requests
 
 URL = 'http://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=3'

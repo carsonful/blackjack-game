@@ -1,6 +1,7 @@
 from extensions import cards
 import time
 
+money = 500
 
 def user():
     
@@ -60,14 +61,14 @@ def user():
 
 
 
-def bet(status, message):
-    bet_amount = bets
-
+def bet(status, bet_amount):
+    bets = bet_amount
+    message = status
     if status == 'WIN':
-        bets = bets * 2
+        bets = bets + money
         message =  f'Congrats you now have ${bets}'
     elif status == 'LOSS':
-        bets = bets * -1
+        bets = money - bets
         message =  f'Good try you now have ${bets}'
     elif status == 'PUSH':
         message =  f'Good Try you have ${bets}'
@@ -77,7 +78,7 @@ def bet(status, message):
 
 def dealer():
 
-    money = 500
+    
     
     bets = int(input(f'How much would you like to bet? (Money: ${money}):'))
 
